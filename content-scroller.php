@@ -84,14 +84,26 @@ function content_scroller_head() {
 
     $initFunction = '
         function (target, top, bottom) {
-            top.find("li").tooltip({ title: tipCallback, container: "body", placement: "bottom", animation: false });
-            bottom.find("li").tooltip({ title: tipCallback, container: "body", placement: "top", animation: false });
+            var tipOptions = {
+                title: tipCallback,
+                container: "body",
+                placement: null,
+                animation: false
+            };
+
+            tipOptions.placement = "bottom";
+            top.find("li").tooltip(tipOptions);
+
+            tipOptions.placement = "top";
+            bottom.find("li").tooltip(tipOptions);
         }
     ';
 
     $script = '
+                var animating = false;
+
                 var tipCallback = function () {
-                    return $(".entry-title", $(this).data("csTarget")).text();
+                    return (animating) ? null : $(".entry-title", $(this).data("csTarget")).text();
                 };
 
                 var scrollerOptions = {};
@@ -108,10 +120,15 @@ function content_scroller_head() {
                 }
                 scrollerOptions.navItem["title"] = ' . $titleFunction . '
                 scrollerOptions.navItem["onBeforeClick"] = function (link) {
+                    animating = true;
                     link.tooltip({animation: false});
                     link.tooltip("hide");
                     link.tooltip({});
-                    }
+                };
+
+                scrollerOptions.navItem["onAfterClick"] = function (link) {
+                    setTimeout(function () { animating = false; }, 500);
+                };
 
                 scrollerOptions.onInit = ' . $initFunction . '
 
