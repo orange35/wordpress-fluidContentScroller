@@ -2,13 +2,11 @@
 /*
  * Plugin Name: Content Scroller
  * Plugin URI: http://orange35.com/plugins
- * Description: A brief description of the Plugin.
+ * Description: Плагін полегшує навігацію на списку постів
  * Version: 1.0
  * Author: Name Of The Plugin Author
  * Author URI: http://URI_Of_The_Plugin_Author
- * License: A "Slug" license name e.g. GPL2
- *
- * @TODO: nav title hints
+ * License: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
  * */
 
 // Make sure we don't expose any info if called directly
@@ -45,7 +43,6 @@ add_action( 'wp_enqueue_scripts', 'content_scroller_scripts' );
 function content_scroller_head() {
     $nav_type = content_scroller_get_current_nav_type();
     $truncate_len = content_scroller_get_current_nav_truncate_len();
-    $base_url = plugin_dir_url(__FILE__);
 
     if ( $nav_type == CONTENT_SCROLLER_NAV_TYPE_DATE ) {
         $titleFunction = '
@@ -87,8 +84,8 @@ function content_scroller_head() {
 
     $initFunction = '
         function (target, top, bottom) {
-            top.find("li").tooltip({ title: tipCallback, container: "body", placement: "bottom" });
-            bottom.find("li").tooltip({ title: tipCallback, container: "body", placement: "top" });
+            top.find("li").tooltip({ title: tipCallback, container: "body", placement: "bottom", animation: false });
+            bottom.find("li").tooltip({ title: tipCallback, container: "body", placement: "top", animation: false });
         }
     ';
 
@@ -110,6 +107,11 @@ function content_scroller_head() {
                     scrollerOptions.navItem = {};
                 }
                 scrollerOptions.navItem["title"] = ' . $titleFunction . '
+                scrollerOptions.navItem["onBeforeClick"] = function (link) {
+                    link.tooltip({animation: false});
+                    link.tooltip("hide");
+                    link.tooltip({});
+                    }
 
                 scrollerOptions.onInit = ' . $initFunction . '
 
