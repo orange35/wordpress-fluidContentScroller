@@ -1,0 +1,3 @@
+[submodule "jquery.contentScroller"]
+	path = jquery.contentScroller
+	url = git://github.com/orange35/jquery.contentScroller.git
