@@ -25,20 +25,27 @@ if ( is_admin() ) {
 }
 
 function content_scroller_styles() {
-    $stylesheet = plugin_dir_url(__FILE__) . 'css/jquery.contentScroller.css';
-    wp_enqueue_style( 'core', $stylesheet, false );
+    $base_url = plugin_dir_url(__FILE__);
+    wp_enqueue_style( 'content-scroller', $base_url . 'css/jquery.contentScroller.css', false );
+    wp_enqueue_style( 'bootstrap-core', $base_url . 'css/bootstrap.css', false );
+    wp_enqueue_style( 'bootstrap-responsive', $base_url . 'css/bootstrap-responsive.css', false );
+
+    wp_enqueue_style( 'html5shiv-ie', $base_url . 'js/html5shiv.js', false );
+    wp_style_add_data( 'html5shiv-ie', 'conditional', 'lt IE 9' );
 }
 add_action( 'wp_enqueue_scripts', 'content_scroller_styles' );
 
 function content_scroller_scripts() {
-    $script = plugin_dir_url(__FILE__) . 'js/jquery.contentScroller.js';
-    wp_enqueue_script( 'content-scroller-core', $script, array( 'jquery-core' ) );
+    $base_url = plugin_dir_url(__FILE__);
+    wp_enqueue_script( 'bootstrap-core', $base_url . 'js/bootstrap.js', array( 'jquery-core' ) );
+    wp_enqueue_script( 'content-scroller-core', $base_url . 'js/jquery.contentScroller.js', array( 'jquery-core' ) );
 }
 add_action( 'wp_enqueue_scripts', 'content_scroller_scripts' );
 
 function content_scroller_head() {
     $nav_type = content_scroller_get_current_nav_type();
     $truncate_len = content_scroller_get_current_nav_truncate_len();
+    $base_url = plugin_dir_url(__FILE__);
 
     if ( $nav_type == CONTENT_SCROLLER_NAV_TYPE_DATE ) {
         $titleFunction = '
@@ -78,7 +85,18 @@ function content_scroller_head() {
         ';
     }
 
+    $initFunction = '
+        function (target, top, bottom) {
+            top.find("li").tooltip({ title: tipCallback, container: "body", placement: "bottom" });
+            bottom.find("li").tooltip({ title: tipCallback, container: "body", placement: "top" });
+        }
+    ';
+
     $script = '
+                var tipCallback = function () {
+                    return $(".entry-title", $(this).data("csTarget")).text();
+                };
+
                 var scrollerOptions = {};
 
                 if ($("#wpadminbar").length) {
@@ -93,10 +111,13 @@ function content_scroller_head() {
                 }
                 scrollerOptions.navItem["title"] = ' . $titleFunction . '
 
+                scrollerOptions.onInit = ' . $initFunction . '
+
                 $("#content > .post").contentScroller(scrollerOptions);
     ';
 
     $script = '<script type="text/javascript">jQuery(function ($) { ' . $script . ' });</script>';
+
     echo $script;
 }
 add_action( 'wp_head', 'content_scroller_head' );
