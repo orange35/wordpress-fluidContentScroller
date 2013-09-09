@@ -2,20 +2,19 @@
 /*
  * Plugin Name: Content Scroller
  * Plugin URI: http://orange35.com/plugins
- * Description: Плагін полегшує навігацію на списку постів
- * Version: 1.0
- * Author: Name Of The Plugin Author
- * Author URI: http://URI_Of_The_Plugin_Author
+ * Description: Плагін призначений для полегшення навігації по довгому списку постів. Плагін зверху і знизу сторінки додає навігаційні панелі, які дозволяють легко прокрутити сторінку до потрібного поста.
+ * Version: 1.0.0
+ * Author: Orange35
+ * Author URI: http://orange35.com/
  * License: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
  * */
 
-// Make sure we don't expose any info if called directly
 if ( !function_exists( 'add_action' ) ) {
     echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
     exit;
 }
 
-define( 'CONTENT_SCROLLER_VERSION', '1.0' );
+define( 'CONTENT_SCROLLER_VERSION', '1.0.0' );
 require_once dirname( __FILE__ ) . '/defines.php';
 
 if ( is_admin() ) {
