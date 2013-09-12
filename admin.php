@@ -64,7 +64,7 @@ function content_scroller_conf() {
         <?php screen_icon(); ?>
         <h2><?php _e('Content Scroller'); ?></h2>
         <hr />
-        <p>You are using version <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
+        <p>You are currently using Content Scroller Plugin version <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
         <div class="have-key">
             <?php if ( !empty($_POST['submit'] ) && $saved_ok ) : ?>
                 <div id="message" class="updated fade"><p><strong><?php _e('Settings saved.') ?></strong></p></div>

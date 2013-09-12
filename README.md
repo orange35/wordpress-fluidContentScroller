@@ -1,30 +1,31 @@
-# [wp-contentScroller](http://orange35.com/plugin/wp-contentScroller)
+# [WordPress Content Scroller Plugin](http://orange35.com/plugin/wp-contentScroller)
 
-## Plugin Info
-* Contributor: Orange35
-* Tags: content, navigation
-* Requires at least: 3.0
-* Tested up to: 3.6
+## Plugin Description
+WordPress Сontent Scroller Plugin is dedicated to making navigation through long blog post lists smooth and easy. Plugin is represented with the tabbed navigation panel at the top and at the bottom of the page allowing to instantly scroll up and down to a particular post on the page. 
+
+* Contributor: [Orange35](http://orange35.com/ "Orange35 Web Development")
+* Tags: content, navigation, blog, scroll
+* Requires at least: wp 3.3
+* Tested up to: wp 3.6
 * Stable tag: 1.0.0
-* License: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
-* License URI: http://creativecommons.org/licenses/by-nc-sa/3.0/
-
-Плагін призначений для полегшення навігації по довгому списку постів.
-
-## Description
-Плагін зверху і знизу сторінки додає навігаційні панелі, які дозволяють легко прокрутити сторінку до потрібного поста.
+* License: [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-nc-sa/3.0/) 
 
 ## Installation
-1. Upload directory with plugin to the '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Configure plugin using settings page
+1. Copy the 'wp-contentScroller' folder into your '/wp-content/plugins/' directory
+2. Navigate to the 'Plugins' menu tab on the admin end
+3. Activate plugin by clicking the "Activate" option under Plugin's name
+4. Configure plugin settings by clicking the "Settings" option under Plugin's name
 
 ## Changelog
-### 1.0
+### 1.0.0
 * Initial Public Release
 
-## Bugs and feature requests
-Have a bug or a feature request? [Please open a new issue](https://github.com/orange35/wp-contentScroller/issues).
+## Bug Reporting/Feature Request
+Would like to report a bug or request a new feature? Feel free to [create a new issue](https://github.com/orange35/wp-contentScroller/issues) for that purpose.
 
-## Copyright and license
-Copyright 2013 Orange35, under [the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license](LICENSE).
+##Credits
+Plugin is created and maintained by [Orange35](http://orange35.com/ "Orange35 Web Development")
+
+## Copyright & License
+Copyright &copy; 2013 Orange35<br />
+[Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](LICENSE)

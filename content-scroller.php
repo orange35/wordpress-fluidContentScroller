@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Content Scroller
  * Plugin URI: http://orange35.com/plugins
- * Description: Плагін призначений для полегшення навігації по довгому списку постів. Плагін зверху і знизу сторінки додає навігаційні панелі, які дозволяють легко прокрутити сторінку до потрібного поста.
+ * Description: Plugin is represented with the tabbed navigation panel at the top and at the bottom of the page allowing to instantly scroll up and down to a particular post on the page making navigation through a long blog post lists smooth and easy.
  * Version: 1.0.0
  * Author: Orange35
  * Author URI: http://orange35.com/
