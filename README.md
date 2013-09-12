@@ -26,6 +26,6 @@ Would like to report a bug or request a new feature? Feel free to [create a new 
 ##Credits
 Plugin is created and maintained by [Orange35](http://orange35.com/ "Orange35 Web Development")
 
-## Copyright & License
+## Copyright &amp; License
 Copyright &copy; 2013 Orange35<br />
 [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](LICENSE)

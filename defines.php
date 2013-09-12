@@ -10,6 +10,7 @@ define( 'CONTENT_SCROLLER_NAV_TRUNCATE_LEN_OPTION', 'content_scroller_nav_trunca
 define( 'CONTENT_SCROLLER_NAV_TYPE_DEFAULT', CONTENT_SCROLLER_NAV_TYPE_NUMBER );
 define( 'CONTENT_SCROLLER_NAV_TRUNCATE_LEN_DEFAULT', 30 );
 
+
 function content_scroller_get_current_nav_type() {
     $type = get_option( CONTENT_SCROLLER_NAV_TYPE_OPTION );
     if ( ! $type ||  ! array_key_exists( $type, content_scroller_get_nav_types() ) ) {
