@@ -62,12 +62,12 @@ function content_scroller_conf() {
 
     <div class="wrap">
         <?php screen_icon(); ?>
-        <h2><?php esc_html_e('Fluid Content Scroller'); ?></h2>
+        <h2><?php esc_html_e( 'Fluid Content Scroller' ); ?></h2>
         <hr />
-        <p><?php esc_html_e('You are currently using Fluid Content Scroller Plugin version'); ?> <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
+        <p><?php esc_html_e( 'You are currently using Fluid Content Scroller Plugin version' ); ?> <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
         <div class="have-key">
             <?php if ( !empty($_POST['submit'] ) && $saved_ok ) : ?>
-                <div id="message" class="updated fade"><p><strong><?php _e('Settings saved.') ?></strong></p></div>
+                <div id="message" class="updated fade"><p><strong><?php _e( 'Updated Settings.' ) ?></strong></p></div>
             <?php endif; ?>
             <?php foreach( $ms as $m ) : ?>
                 <div class="<?php echo $messages[$m]['class']; ?>"><p><strong><?php echo $messages[$m]['text']; ?></strong></p></div>
@@ -76,19 +76,35 @@ function content_scroller_conf() {
                 <table class="form-table">
                     <tbody>
                     <tr>
-                        <th><?php _e('Navigation Type');?></th>
+                        <th><?php _e( 'Navigation Type' );?></th>
                         <td>
-                            <?php foreach ( content_scroller_get_nav_types() as $type => $title ) : ?>
-                                <input id="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>_<?php echo $type; ?>" name="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>" value="<?php echo $type; ?>" type="radio" <?php if ( $type == content_scroller_get_current_nav_type() ) echo 'checked="checked"'; ?> />
-                                <label for="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>_<?php echo $type; ?>"><?php esc_html_e( $title ); ?></label>
-                                <br />
-                            <?php endforeach; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><label for="<?php echo CONTENT_SCROLLER_NAV_TRUNCATE_LEN_OPTION; ?>"><?php _e('Title Max Length');?></label></th>
-                        <td>
-                            <input id="<?php echo CONTENT_SCROLLER_NAV_TRUNCATE_LEN_OPTION; ?>" name="<?php echo CONTENT_SCROLLER_NAV_TRUNCATE_LEN_OPTION; ?>" value="<?php echo content_scroller_get_current_nav_truncate_len(); ?>" type="text" maxlength="3" size="4" />
+                            <table>
+                                <tr>
+                                    <?php
+                                        $iteration = 0;
+                                        $typeOptions = content_scroller_get_nav_types();
+                                        $typeOptionsCount = count($typeOptions);
+                                    ?>
+                                    <?php foreach ( $typeOptions as $type => $title ) : ?>
+                                        <td style="vertical-align: top; padding: 0;">
+                                            <input style="vertical-align: top;" id="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>_<?php echo $type; ?>" name="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>" value="<?php echo $type; ?>" type="radio" <?php if ( $type == content_scroller_get_current_nav_type() ) echo 'checked="checked"'; ?> />
+                                        </td>
+                                        <td style="vertical-align: top; padding: 0;">
+                                            <label for="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>_<?php echo $type; ?>"><?php esc_html_e( $title ); ?></label>
+                                            <?php if ( $type == CONTENT_SCROLLER_NAV_TYPE_TITLE ) : ?>
+                                                <br />
+                                                <label for="<?php echo CONTENT_SCROLLER_NAV_TRUNCATE_LEN_OPTION; ?>"><?php _e('Label Length');?></label>
+                                                <input id="<?php echo CONTENT_SCROLLER_NAV_TRUNCATE_LEN_OPTION; ?>" name="<?php echo CONTENT_SCROLLER_NAV_TRUNCATE_LEN_OPTION; ?>" value="<?php echo content_scroller_get_current_nav_truncate_len(); ?>" type="text" maxlength="2" size="2" />
+                                            <?php endif; ?>
+                                        </td>
+                                        <?php $iteration++; ?>
+                                        <?php if ( $iteration < $typeOptionsCount ) : ?>
+                                            </tr><tr>
+                                        <?php endif ?>
+                                    <?php endforeach ?>
+                                </tr>
+                            </table>
+
                         </td>
                     </tr>
                     </tbody>

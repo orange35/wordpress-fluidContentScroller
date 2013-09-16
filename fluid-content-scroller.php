@@ -50,10 +50,21 @@ function content_scroller_head() {
                 var entryDate = $(".entry-date", itemNode).attr("datetime");
                 if (entryDate) {
                     entryDate = new Date(entryDate);
-                    return monthNames[entryDate.getMonth()] + " " + entryDate.getDate() + ", " + entryDate.getFullYear();
+                    var formatted = monthNames[entryDate.getMonth()] + " " + entryDate.getDate() + ", " + entryDate.getFullYear();
+                    var hour = parseInt(entryDate.getHours());
+                    var meridiem = "";
+                    if (hour > 12) {
+                        hour -= 12;
+                        meridiem = "PM";
+                    } else {
+                        meridiem = "AM";
+                    }
+                    var minute = "" + entryDate.getMinutes();
+                    formatted += " " + hour  + ":" + (minute.length == 1 ? "0" : "") + minute + " " + meridiem;
+                    return formatted;
                 }
                 return null;
-            }
+            };
         ';
     } else if ( $nav_type == CONTENT_SCROLLER_NAV_TYPE_TITLE ) {
         $titleFunction = '
@@ -71,13 +82,13 @@ function content_scroller_head() {
                     }
                 }
                 return null;
-            }
+            };
         ';
     } else {
         $titleFunction = '
             function (index, itemNode) {
                 return null;
-            }
+            };
         ';
     }
 
@@ -95,7 +106,7 @@ function content_scroller_head() {
 
             tipOptions.placement = "top";
             bottom.find("li").tooltip(tipOptions);
-        }
+        };
     ';
 
     $script = '
