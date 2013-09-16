@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Content Scroller
+ * Plugin Name: Fluid Content Scroller
  * Plugin URI: http://orange35.com/plugins
  * Description: Plugin is represented with the tabbed navigation panel at the top and at the bottom of the page allowing to instantly scroll up and down to a particular post on the page making navigation through a long blog post lists smooth and easy.
  * Version: 1.0.0
@@ -23,7 +23,7 @@ if ( is_admin() ) {
 
 function content_scroller_styles() {
     $base_url = plugin_dir_url(__FILE__);
-    wp_enqueue_style( 'content-scroller', $base_url . 'css/jquery.contentScroller.css', false );
+    wp_enqueue_style( 'content-scroller', $base_url . 'css/jquery.fluidContentScroller.css', false );
     wp_enqueue_style( 'bootstrap-core', $base_url . 'css/bootstrap.css', false );
     wp_enqueue_style( 'bootstrap-responsive', $base_url . 'css/bootstrap-responsive.css', false );
 
@@ -35,7 +35,7 @@ add_action( 'wp_enqueue_scripts', 'content_scroller_styles' );
 function content_scroller_scripts() {
     $base_url = plugin_dir_url(__FILE__);
     wp_enqueue_script( 'bootstrap-core', $base_url . 'js/bootstrap.js', array( 'jquery-core' ) );
-    wp_enqueue_script( 'content-scroller-core', $base_url . 'js/jquery.contentScroller.js', array( 'jquery-core' ) );
+    wp_enqueue_script( 'content-scroller-core', $base_url . 'js/jquery.fluidContentScroller.js', array( 'jquery-core' ) );
 }
 add_action( 'wp_enqueue_scripts', 'content_scroller_scripts' );
 
@@ -131,7 +131,7 @@ function content_scroller_head() {
 
                 scrollerOptions.onInit = ' . $initFunction . '
 
-                $("#content > .post").contentScroller(scrollerOptions);
+                $("#content > .post").fluidContentScroller(scrollerOptions);
     ';
 
     $script = '<script type="text/javascript">jQuery(function ($) { ' . $script . ' });</script>';

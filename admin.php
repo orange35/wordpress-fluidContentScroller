@@ -1,8 +1,8 @@
 <?php
 
 function content_scroller_plugin_action_links( $links, $file ) {
-    if ( $file == plugin_basename( dirname(__FILE__).'/content-scroller.php' ) ) {
-        $links[] = '<a href="' . admin_url( 'admin.php?page=content-scroller-config' ) . '">'.__( 'Settings' ).'</a>';
+    if ( $file == plugin_basename( dirname(__FILE__).'/fluid-content-scroller.php' ) ) {
+        $links[] = '<a href="' . admin_url( 'admin.php?page=fluid-content-scroller-config' ) . '">'.__( 'Settings' ).'</a>';
     }
     return $links;
 }
@@ -19,9 +19,9 @@ add_action( 'admin_menu', 'content_scroller_admin_menu' );
 
 function content_scroller_load_menu() {
     if ( class_exists( 'Jetpack' ) ) {
-        add_submenu_page( 'jetpack', __( 'Content Scroller' ), __( 'Content Scroller' ), 'manage_options', 'content-scroller-config', 'content_scroller_conf' );
+        add_submenu_page( 'jetpack', __( 'Fluid Content Scroller' ), __( 'Fluid Content Scroller' ), 'manage_options', 'fluid-content-scroller-config', 'fluid_content_scroller_conf' );
     } else {
-        add_submenu_page('plugins.php', __('Content Scroller'), __('Content Scroller'), 'manage_options', 'content-scroller-config', 'content_scroller_conf');
+        add_submenu_page('plugins.php', __('Fluid Content Scroller'), __('Fluid Content Scroller'), 'manage_options', 'fluid-content-scroller-config', 'fluid_content_scroller_conf');
     }
 }
 
@@ -64,7 +64,7 @@ function content_scroller_conf() {
         <?php screen_icon(); ?>
         <h2><?php _e('Content Scroller'); ?></h2>
         <hr />
-        <p>You are currently using Content Scroller Plugin version <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
+        <p>You are currently using Fluid Content Scroller Plugin version <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
         <div class="have-key">
             <?php if ( !empty($_POST['submit'] ) && $saved_ok ) : ?>
                 <div id="message" class="updated fade"><p><strong><?php _e('Settings saved.') ?></strong></p></div>
