@@ -19,9 +19,9 @@ add_action( 'admin_menu', 'content_scroller_admin_menu' );
 
 function content_scroller_load_menu() {
     if ( class_exists( 'Jetpack' ) ) {
-        add_submenu_page( 'jetpack', __( 'Fluid Content Scroller' ), __( 'Fluid Content Scroller' ), 'manage_options', 'fluid-content-scroller-config', 'fluid_content_scroller_conf' );
+        add_submenu_page( 'jetpack', __( 'Fluid Content Scroller' ), __( 'Fluid Content Scroller' ), 'manage_options', 'fluid-content-scroller-config', 'content_scroller_conf' );
     } else {
-        add_submenu_page('plugins.php', __('Fluid Content Scroller'), __('Fluid Content Scroller'), 'manage_options', 'fluid-content-scroller-config', 'fluid_content_scroller_conf');
+        add_submenu_page('plugins.php', __('Fluid Content Scroller'), __('Fluid Content Scroller'), 'manage_options', 'fluid-content-scroller-config', 'content_scroller_conf');
     }
 }
 
@@ -62,9 +62,9 @@ function content_scroller_conf() {
 
     <div class="wrap">
         <?php screen_icon(); ?>
-        <h2><?php _e('Content Scroller'); ?></h2>
+        <h2><?php esc_html_e('Fluid Content Scroller'); ?></h2>
         <hr />
-        <p>You are currently using Fluid Content Scroller Plugin version <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
+        <p><?php esc_html_e('You are currently using Fluid Content Scroller Plugin version'); ?> <?php esc_html_e( CONTENT_SCROLLER_VERSION ); ?></p>
         <div class="have-key">
             <?php if ( !empty($_POST['submit'] ) && $saved_ok ) : ?>
                 <div id="message" class="updated fade"><p><strong><?php _e('Settings saved.') ?></strong></p></div>

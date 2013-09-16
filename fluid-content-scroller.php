@@ -23,7 +23,7 @@ if ( is_admin() ) {
 
 function content_scroller_styles() {
     $base_url = plugin_dir_url(__FILE__);
-    wp_enqueue_style( 'content-scroller', $base_url . 'css/jquery.fluidContentScroller.css', false );
+    wp_enqueue_style( 'fluid-content-scroller', $base_url . 'css/jquery.fluidContentScroller.css', false );
     wp_enqueue_style( 'bootstrap-core', $base_url . 'css/bootstrap.css', false );
     wp_enqueue_style( 'bootstrap-responsive', $base_url . 'css/bootstrap-responsive.css', false );
 
@@ -35,7 +35,7 @@ add_action( 'wp_enqueue_scripts', 'content_scroller_styles' );
 function content_scroller_scripts() {
     $base_url = plugin_dir_url(__FILE__);
     wp_enqueue_script( 'bootstrap-core', $base_url . 'js/bootstrap.js', array( 'jquery-core' ) );
-    wp_enqueue_script( 'content-scroller-core', $base_url . 'js/jquery.fluidContentScroller.js', array( 'jquery-core' ) );
+    wp_enqueue_script( 'fluid-content-scroller-core', $base_url . 'js/jquery.fluidContentScroller.js', array( 'jquery-core' ) );
 }
 add_action( 'wp_enqueue_scripts', 'content_scroller_scripts' );
 
