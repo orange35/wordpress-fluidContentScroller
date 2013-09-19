@@ -29,7 +29,7 @@ function content_scroller_get_current_nav_truncate_len() {
 
 function content_scroller_get_nav_types() {
     return array(
-        CONTENT_SCROLLER_NAV_TYPE_NUMBER => 'Post Count',
+        CONTENT_SCROLLER_NAV_TYPE_NUMBER => 'Posts Per Page Count',
         CONTENT_SCROLLER_NAV_TYPE_DATE   => 'Post Date',
         CONTENT_SCROLLER_NAV_TYPE_TITLE  => 'Post Title',
     );
