@@ -94,23 +94,26 @@ function content_scroller_head() {
 
     $initFunction = '
         function (target, top, bottom) {
-            var tipOptions = {
-                title: tipCallback,
-                container: "body",
-                placement: null,
-                animation: false
-            };
+            if (!isMobile) {
+                var tipOptions = {
+                    title: tipCallback,
+                    container: "body",
+                    placement: null,
+                    animation: false
+                };
 
-            tipOptions.placement = "bottom";
-            top.find("li").tooltip(tipOptions);
+                tipOptions.placement = "bottom";
+                top.find("li").tooltip(tipOptions);
 
-            tipOptions.placement = "top";
-            bottom.find("li").tooltip(tipOptions);
+                tipOptions.placement = "top";
+                bottom.find("li").tooltip(tipOptions);
+            }
         };
     ';
 
     $script = '
                 var animating = false;
+                var isMobile = new RegExp("(Android)|(iPod)|(iPad)|(iPhone)", "i").test(navigator.userAgent);
 
                 var tipCallback = function () {
                     return (animating) ? null : $(".entry-title", $(this).data("csTarget")).text();
@@ -131,9 +134,11 @@ function content_scroller_head() {
                 scrollerOptions.navItem["title"] = ' . $titleFunction . '
                 scrollerOptions.navItem["onBeforeClick"] = function (link) {
                     animating = true;
-                    link.tooltip({animation: false});
-                    link.tooltip("hide");
-                    link.tooltip({});
+                    if (!isMobile) {
+                        link.tooltip({animation: false});
+                        link.tooltip("hide");
+                        link.tooltip({});
+                    }
                 };
 
                 scrollerOptions.navItem["onAfterClick"] = function (link) {
