@@ -74,7 +74,7 @@ function content_scroller_conf() {
             <?php endforeach; ?>
             <form action="" method="post" id="content-scroller-conf">
                 <b><?php _e( 'Navigation Tabs Labeling:' );?></strong></b>
-                <table border="0">
+                <table style="border:none;">
                     <tr>
                         <?php
                             $iteration = 0;
@@ -82,10 +82,10 @@ function content_scroller_conf() {
                             $typeOptionsCount = count($typeOptions);
                         ?>
                         <?php foreach ( $typeOptions as $type => $title ) : ?>
-                            <td style="vertical-align: top; padding: 0;">
+                            <td style="vertical-align: top; padding: 2px;">
                                 <input style="vertical-align: top;" id="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>_<?php echo $type; ?>" name="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>" value="<?php echo $type; ?>" type="radio" <?php if ( $type == content_scroller_get_current_nav_type() ) echo 'checked="checked"'; ?> />
                             </td>
-                            <td style="vertical-align: top; padding-top: 2px;">
+                            <td style="vertical-align: top; padding-top:2px;">
                                 <label for="<?php echo CONTENT_SCROLLER_NAV_TYPE_OPTION; ?>_<?php echo $type; ?>"><?php esc_html_e( $title ); ?></label>
                                 <?php if ( $type == CONTENT_SCROLLER_NAV_TYPE_TITLE ) : ?>
                                     <br />
