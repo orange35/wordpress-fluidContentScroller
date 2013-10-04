@@ -43,10 +43,29 @@ function content_scroller_head() {
     $nav_type = content_scroller_get_current_nav_type();
     $truncate_len = content_scroller_get_current_nav_truncate_len();
 
+    $articeleTitleFuncion = '
+        function (index, itemNode) {
+            var entryTitle = $(".entry-title", itemNode).html();
+            entryTitle = entryTitle.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, "");
+            entryTitle = entryTitle.replace(/(^\s+)|(\s+$)/g, "");
+            if (entryTitle) {
+                if (' . $truncate_len . ' >= entryTitle.length) {
+                    return entryTitle;
+                } else {
+                    var len = entryTitle.substring(' . $truncate_len . ').search(/\W/);
+                    len = (len >= 0) ? (len + ' . $truncate_len . ') : len;
+                    return entryTitle.substring(0, len) + "...";
+                }
+            }
+            return null;
+        };
+    ';
+
     if ( $nav_type == CONTENT_SCROLLER_NAV_TYPE_DATE ) {
         $titleFunction = '
             function (index, itemNode) {
-                var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+                var getArticleTitle = ' . $articeleTitleFuncion . '
+                var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 var entryDate = $(".entry-date", itemNode).attr("datetime");
                 if (entryDate) {
                     entryDate = new Date(entryDate);
@@ -62,28 +81,17 @@ function content_scroller_head() {
                     var minute = "" + entryDate.getMinutes();
                     formatted += " " + hour  + ":" + (minute.length == 1 ? "0" : "") + minute + " " + meridiem;
                     return formatted;
-                }
-                return null;
-            };
-        ';
-    } else if ( $nav_type == CONTENT_SCROLLER_NAV_TYPE_TITLE ) {
-        $titleFunction = '
-            function (index, itemNode) {
-                var entryTitle = $(".entry-title", itemNode).html();
-                entryTitle = entryTitle.replace(/<\/?([a-z][a-z0-9]*)\b[^>]*>/gi, "");
-                entryTitle = entryTitle.replace(/(^\s+)|(\s+$)/g, "");
-                if (entryTitle) {
-                    if (' . $truncate_len . ' >= entryTitle.length) {
-                        return entryTitle;
-                    } else {
-                        var len = entryTitle.substring(' . $truncate_len . ').search(/\W/);
-                        len = (len >= 0) ? (len + ' . $truncate_len . ') : len;
-                        return entryTitle.substring(0, len) + "...";
+                } else {
+                    var articleTitle = getArticleTitle( index, itemNode )
+                    if (null != articleTitle) {
+                        return "Page \"" + articleTitle + "\"";
                     }
                 }
                 return null;
             };
         ';
+    } else if ( $nav_type == CONTENT_SCROLLER_NAV_TYPE_TITLE ) {
+        $titleFunction = $articeleTitleFuncion;
     } else {
         $titleFunction = '
             function (index, itemNode) {
