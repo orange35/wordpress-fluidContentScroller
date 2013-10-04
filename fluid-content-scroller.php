@@ -3,7 +3,7 @@
  * Plugin Name: Fluid Content Scroller
  * Plugin URI: http://orange35.com/jquery-fluid-content-scroller
  * Description: Plugin is represented with the tabbed navigation panel at the top and at the bottom of the page allowing to instantly scroll up and down to a particular post on the page making navigation through a long blog post lists smooth and easy.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Orange35
  * Author URI: http://orange35.com/
  * License: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
@@ -14,7 +14,7 @@ if ( !function_exists( 'add_action' ) ) {
     exit;
 }
 
-define( 'CONTENT_SCROLLER_VERSION', '1.0.0' );
+define( 'CONTENT_SCROLLER_VERSION', '1.0.1' );
 require_once dirname( __FILE__ ) . '/defines.php';
 
 if ( is_admin() ) {
