@@ -147,7 +147,7 @@ function content_scroller_head() {
 
                 scrollerOptions.onInit = ' . $initFunction . '
 
-                $("#content > .post").fluidContentScroller(scrollerOptions);
+                $("#content > article").fluidContentScroller(scrollerOptions);
     ';
 
     $script = '<script type="text/javascript">jQuery(function ($) { ' . $script . ' });</script>';
