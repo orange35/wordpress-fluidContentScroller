@@ -29,6 +29,7 @@ WordPress Fluid Content Scroller Plugin is dedicated to making navigation throug
 ## Changelog
 ### 1.0.0
 * Initial Public Release
+
 ### 1.0.1
 * Fixed articles selector
 * Updated README.md
