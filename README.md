@@ -1,6 +1,6 @@
 # [WordPress Fluid Content Scroller Plugin](http://orange35.com/jquery-fluid-content-scroller) 
 
-## Plugin Description
+## Product Description
 WordPress Fluid Content Scroller Plugin is dedicated to making navigation through long blog post lists smooth and easy. Plugin is represented with the tabbed navigation panel at the top and at the bottom of the page allowing to instantly scroll up and down to a particular post on the page.
 
 * Contributor: [Orange35](http://orange35.com/ "Orange35 Web Development")
@@ -9,6 +9,16 @@ WordPress Fluid Content Scroller Plugin is dedicated to making navigation throug
 * Tested up to: wp 3.6
 * Stable tag: 1.0.0
 * License: [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License](http://creativecommons.org/licenses/by-nc-sa/3.0/) 
+
+## Product Features 
+* Responsive design
+* Smooth animation effect
+* Touch friendlyness
+* Tested up to WP 3.6
+* Different tabs labeling options
+* Free for non-commercial use
+* Free updates
+* Cross-platform & cross-browser
 
 ## Installation
 1. Copy the 'wordpress-fluidContentScroller' folder into your '/wp-content/plugins/' directory
