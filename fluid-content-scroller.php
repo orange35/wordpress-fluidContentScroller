@@ -68,7 +68,31 @@ function content_scroller_head() {
                 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 var entryDate = $(".entry-date", itemNode).attr("datetime");
                 if (entryDate) {
-                    entryDate = new Date(entryDate);
+                    if (/MSIE/.test(navigator.userAgent)) {
+                        var version = /MSIE (\d+).\d+/.exec(navigator.userAgent);
+                        if (version[1] <= 8) {
+                            var dateRegexp = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})([\+\-]\d{2}):(\d{2})$/
+                            var parts = dateRegexp.exec(entryDate);
+                            if (parts) {
+                                /* month */
+                                parts[2] = +parts[2];
+                                parts[2]--;
+                                /* hour */
+                                var tzOffset = parseInt(new Date().getTimezoneOffset()) / 60;
+                                pOffset = parseInt(parts[7]);
+                                tzOffset += pOffset;
+                                parts[4] = +parts[4];
+                                parts[4] -= tzOffset;
+                                entryDate = new Date(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]);
+                            } else {
+                                return null;
+                            }
+                        } else {
+                            entryDate = new Date(entryDate);
+                        }
+                    } else {
+                        entryDate = new Date(entryDate);
+                    }
                     var formatted = monthNames[entryDate.getMonth()] + " " + entryDate.getDate() + ", " + entryDate.getFullYear();
                     var hour = parseInt(entryDate.getHours());
                     var meridiem = "";
